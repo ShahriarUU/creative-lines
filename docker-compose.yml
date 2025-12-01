@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: creative-lines
+    image: postgres:17
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: creative-lines
+    volumes:
+      - postgres:/data/postgres
+      - ../db_backup/:/root/creative-lines_backup/
+    ports:
+      - 5445:5432
+    restart: unless-stopped
+volumes:
+  postgres:
+
+
