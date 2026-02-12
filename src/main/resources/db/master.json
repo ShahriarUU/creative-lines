@@ -1,0 +1,10 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "changelogs/v1/user.sql",
+        "relativeToChangelogFile": true
+      }
+    }
+  ]
+}

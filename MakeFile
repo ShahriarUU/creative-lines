@@ -1,0 +1,23 @@
+include .env
+export
+
+SERVICE_NAME="creative-lines"
+
+# Update database according to the changes
+migrate-up:
+	./mvnw liquibase:update \
+	  -Dliquibase.driver=org.postgresql.Driver \
+	  -Dliquibase.changeLogFile=$(LIQUIBASE_CHANGE_LOG_FILE) \
+	  -Dliquibase.url=$(DATASOURCE_URL) \
+	  -Dliquibase.username=$(DATASOURCE_USERNAME) \
+	  -Dliquibase.password=$(DATASOURCE_PASSWORD)
+
+# Migrate rollback by 1
+migrate-down:
+	./mvnw liquibase:rollback \
+	  -Dliquibase.driver=org.postgresql.Driver \
+	  -Dliquibase.changeLogFile=$(LIQUIBASE_CHANGE_LOG_FILE) \
+	  -Dliquibase.url=$(DATASOURCE_URL) \
+	  -Dliquibase.username=$(DATASOURCE_USERNAME) \
+	  -Dliquibase.password=$(DATASOURCE_PASSWORD) \
+	  -Dliquibase.rollbackCount=1
